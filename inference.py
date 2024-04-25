@@ -12,7 +12,7 @@ import torch
 import numpy as np
 import soundfile as sf
 import torch.nn as nn
-from utils import demix_track, demix_track_demucs, get_model_from_config
+from .utils import demix_track, demix_track_demucs, get_model_from_config
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -21,7 +21,8 @@ warnings.filterwarnings("ignore")
 def run_folder(model, args, config, device, verbose=False):
     start_time = time.time()
     model.eval()
-    all_mixtures_path = glob.glob(args.input_folder + '/*.*')
+    #all_mixtures_path = glob.glob(args.input_folder + '/*.*')
+    all_mixtures_path=[args.input_folder]
     print('Total files found: {}'.format(len(all_mixtures_path)))
 
     instruments = config.training.instruments
